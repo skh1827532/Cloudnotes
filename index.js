@@ -64,15 +64,20 @@ function showNotes() {
 }
 
 function deleteNote(id) {
-  let notes = localStorage.getItem("notes");
-  if (notes == null) {
-    notesCont = [];
+  let responseVar = confirm("Are you sure you want to delete this note?");
+  if (responseVar) {
+    let notes = localStorage.getItem("notes");
+    if (notes == null) {
+      notesCont = [];
+    } else {
+      notesCont = JSON.parse(notes);
+    }
+    notesCont.splice(id, 1);
+    localStorage.setItem("notes", JSON.stringify(notesCont));
+    showNotes();
   } else {
-    notesCont = JSON.parse(notes);
+    return;
   }
-  notesCont.splice(id, 1);
-  localStorage.setItem("notes", JSON.stringify(notesCont));
-  showNotes();
 }
 
 function editNote(e) {
