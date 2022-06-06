@@ -32,21 +32,33 @@ function showNotes() {
   } else {
     notesCont = JSON.parse(notes);
   }
-  let html = "";
-  notesCont.forEach((elem, index) => {
-    html += `<div class="card mx-2 my-2" style="width: 18rem;">
+  let itemsContainer = document.querySelector(".itemsContainer");
+  if (notesCont.length == 0) {
+    itemsContainer.innerHTML = "Nothing to show ...";
+  } else {
+    let html = "";
+
+    notesCont.forEach((elem, index) => {
+      html += `<div class="card mx-2 my-2" style="width: 18rem;" id=${index}>
      
         <div class="card-body">
+         
           <h5 class="card-title">${elem.title}</h5>
           <p class="card-text">${elem.description}</p>
-          <a href="#" class="btn btn-primary" id=${index} onClick=deleteNote(this.id)>Delete Note</a>
+          <a href="#" id=${index} onClick=deleteNote(this.id)><img style="width:25px; height:25px;" src="EditNote.svg"/></a>
+          <a href="#"  id=${index} onClick=editNote(this.id)><img style="width:25px; height:25px;" src="DeleteNote.svg"/></a>
+          
+
+        
+          
         </div>
       </div>`;
-  });
+    });
 
-  let itemsContainer = document.querySelector(".itemsContainer");
-  console.log(itemsContainer.innerHTML);
-  itemsContainer.innerHTML = html;
+    console.log(itemsContainer.innerHTML);
+
+    itemsContainer.innerHTML = html;
+  }
 
   //   itemsContainer.innerHTML = html;
 }
@@ -61,4 +73,51 @@ function deleteNote(id) {
   notesCont.splice(id, 1);
   localStorage.setItem("notes", JSON.stringify(notesCont));
   showNotes();
+}
+
+function editNote(e) {
+  console.log(e);
+  let notes = localStorage.getItem("notes");
+  if (notes == null) {
+    notesCont = [];
+  } else {
+    notesCont = JSON.parse(notes);
+  }
+  let title = notesCont[e].title;
+  let description = notesCont[e].description;
+  let saveChangesBtn = document.querySelector(".saveChangesBtn");
+  saveChangesBtn.setAttribute("id", e);
+
+  let launchBtn = document.querySelector(".launchBtn");
+  launchBtn.setAttribute("id", e);
+  launchBtn.click();
+  let updateTitle = document.querySelector(".updateTitleText");
+  let updateDescription = document.querySelector(".updateDescriptionText");
+
+  updateTitle.value = title;
+  updateDescription.value = description;
+}
+
+let saveChangesBtn = document.querySelector(".saveChangesBtn");
+saveChangesBtn.addEventListener("click", updateNote);
+
+function updateNote() {
+  console.log(saveChangesBtn.getAttribute("id"));
+  let newTitle = document.querySelector(".updateTitleText").value;
+  let newDescription = document.querySelector(".updateDescriptionText").value;
+
+  let notes = localStorage.getItem("notes");
+  if (notes == null) {
+    notesCont = [];
+  } else {
+    notesCont = JSON.parse(notes);
+  }
+
+  notesCont[saveChangesBtn.getAttribute("id")].title = newTitle;
+  notesCont[saveChangesBtn.getAttribute("id")].description = newDescription;
+  localStorage.setItem("notes", JSON.stringify(notesCont));
+  showNotes();
+
+  let closeBtn = document.querySelector(".closeBtn");
+  closeBtn.click();
 }

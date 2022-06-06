@@ -26,9 +26,14 @@
               </li>
       
           </div>
+          <form class="d-flex">
+            <input class="form-control me-2 searchTxt" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
         </div>
       </nav>
     <div class="container">
+      
         <h1>Add your Notes </h1>
         <div class="container">
             <div class="mb-3">
@@ -42,10 +47,43 @@
 
         </div>
         <button id="addBtn" class="btn btn-primary mx-2">Add Note</button>
+   
         <div class="container row container-fluid itemsContainer">
 
         </div>
     </div>
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary launchBtn" data-bs-toggle="modal" style="display: none;" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update Note</h5>
+        
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Title</label>
+          <input type="text" class="form-control updateTitleText" id="exampleFormControlInput1" placeholder="Add your title here">
+        </div>
+      <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Description</label>
+          <input type="text" class="form-control updateDescriptionText" id="exampleFormControlInput1" placeholder="Add your description here">
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary closeBtn" data-bs-dismiss="modal">Close</button>
+        <button type="button"  class="btn btn-primary saveChangesBtn">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
   </body>
 
   <script
