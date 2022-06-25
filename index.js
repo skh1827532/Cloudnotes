@@ -143,17 +143,26 @@ search.addEventListener("input", function () {
   let inputVal = search.value.toLowerCase();
   // console.log('Input event fired!', inputVal);
   let noteCards = document.getElementsByClassName("noteCard");
+<<<<<<< HEAD
   Array.from(noteCards).forEach(function (element, index) {
+=======
+  Array.from(noteCards).forEach(function (element) {
+>>>>>>> 54ca8bf564ce2f197fab122b22a8e7c8059c51ab
     let cardTxt = element.getElementsByTagName("p")[0].innerText.toLowerCase();
     let titleTxt = element
       .getElementsByTagName("h5")[0]
       .innerText.toLowerCase();
+<<<<<<< HEAD
 
+=======
+    // console.log(cardTxt, titleTxt);
+>>>>>>> 54ca8bf564ce2f197fab122b22a8e7c8059c51ab
     if (cardTxt.includes(inputVal) || titleTxt.includes(inputVal)) {
       element.style.display = "block";
     } else {
       element.style.display = "none";
     }
+<<<<<<< HEAD
   });
 });
 
@@ -185,3 +194,8 @@ const useFunc = () => {
 };
 
 setInterval(useFunc, 1000);
+=======
+    // console.log(cardTxt);
+  });
+});
+>>>>>>> 54ca8bf564ce2f197fab122b22a8e7c8059c51ab
