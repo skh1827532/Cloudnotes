@@ -26,6 +26,7 @@ function addItem() {
   showNotes();
   document.querySelector(".titleText").value = "";
   document.querySelector(".descriptionText").value = "";
+  document.querySelector(".timeText").value = "";
 }
 
 function showNotes() {
@@ -173,7 +174,12 @@ const useFunc = () => {
 
     let newDate = new Date();
     let newTime = newDate.getHours() + ":" + newDate.getMinutes();
-    if (elem.time === `${newTime}AM` || elem.time === `${newTime}PM`) {
+    if (
+      elem.time === `${newTime}` ||
+      elem.time === `${newTime}` ||
+      elem.time === `${newTime}AM` ||
+      elem.time === `${newTime}PM`
+    ) {
       let audio = new Audio("alert.mp3");
       audio.play();
 
