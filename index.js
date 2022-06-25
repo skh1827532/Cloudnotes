@@ -173,13 +173,13 @@ const useFunc = () => {
 
     let newDate = new Date();
     let newTime = newDate.getHours() + ":" + newDate.getMinutes();
-    if (elem.time === `${newTime}AM`) {
+    if (elem.time === `${newTime}AM` || elem.time === `${newTime}PM`) {
+      let audio = new Audio("alert.mp3");
+      audio.play();
+
       // alert(
       //   "You have a note for today!\n" + elem.title + "\n" + elem.description
       // );
-
-      let audio = new Audio("alert.mp3");
-      audio.play();
     }
   });
 };
